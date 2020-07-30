@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NameForm from './nameform';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          I hate React
         </p>
         <a
           className="App-link"
@@ -18,6 +19,8 @@ function App() {
         >
           Learn React
         </a>
+    <NameForm/>
+
       </header>
     </div>
   );
