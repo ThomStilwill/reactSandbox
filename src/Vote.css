@@ -1,0 +1,16 @@
+.voters{
+    list-style: none;
+
+}
+.vote li {
+
+}
+
+.voter{
+    margin-right: 20px;
+    color: #333;
+}
+
+.voting {
+    padding: 20px;;
+}

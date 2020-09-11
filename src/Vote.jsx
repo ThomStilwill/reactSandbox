@@ -1,4 +1,5 @@
 import React from 'react';
+import './Vote.css';
 
 const data = {
     self: 'Thomas',
@@ -29,11 +30,6 @@ class VoteButton extends React.Component {
             </button>
         );
     };
-
-    // static propTypes = {
-    //     onClickFunc: React.PropTypes.func.isRequired
-    //     //value: React.PropTypes.string.isRequired
-    // }
 }
 
 class VoteSelector extends React.Component {
@@ -62,18 +58,24 @@ class VoteSelector extends React.Component {
 const Voter = (props) => {
     return (
         <>
-            <li>{props.name}</li> 
-            { props.name === props.self &&
-                <label>{props.vote}</label>
+            <li><span className="voter">{props.name}</span>
+            { (props.name === props.selectedVoter ||props.showVotes) &&
+                <label >{props.vote}</label>
             }
+            </li> 
         </>        
     );
 }
 
 const Voters = (props) => (
     <>  
-    <ul>
-        {props.state.voters.map(voter => <Voter {...voter} self={props.state.selectedVoter} vote={props.state.selectedVote}/>)}
+    <ul className="voters">
+        {props.state.voters.map(voter => 
+            <Voter {...voter} 
+                    selectedVoter={props.state.selectedVoter} 
+                    showVotes={props.state.showVotes}
+            />
+        )}
     </ul>
     </>
 );
@@ -82,33 +84,51 @@ class Vote extends React.Component {
     state = {
         voters: data.voters,
         selectedVote: '',
-        selectedVoter: data.self,
+        selectedVoter: '',
+        allVoted: false,
+        showVotes: false
     }
     
     handleSelectedVote = (vote) => {
-        this.setState({selectedVote: vote})
+        const updatedvoters = this.state.voters.map(voter => {
+            if (voter.name === this.state.selectedVoter) {
+                voter.vote = vote;
+            }
+            return voter;
+        });
+
+        this.setState({voters: updatedvoters});
+        this.setState({allVoted: updatedvoters.every(voter=>(voter))});
     }
+
+    handleVoterChange = (event) => {
+        this.setState({selectedVoter: event.target.value});
+    }
+
+    handleShowToggle = (event) => {
+        this.setState({showVotes: !this.state.showVotes});
+    }
+
 
     render(){
         return (
-            <>  
-            <VoteSelector onSelectedVote={this.handleSelectedVote}/> <br></br>
-            <label>My Vote: {this.state.selectedVote}</label>
-            <Voters state={this.state}/>
-            </>
+            <div className="voting">
+                <VoteSelector onSelectedVote={this.handleSelectedVote}/> <br/>
+                <label>My Vote: {this.state.selectedVote}</label>
+                <Voters state={this.state}/>
+
+                <hr/>
+                <label>Test</label>{this.state.selectedVote}<br/>
+                <select value={this.state.selectedVoter} onChange={this.handleVoterChange}>
+                    <option value='Thomas'>Thomas</option>
+                    <option value='Richard'>Richard</option>
+                    <option value='Harold'>Harold</option>
+                </select>
+                <button onClick={this.handleShowToggle}>Toggle All Votes.</button>
+                { this.state.showVotes | toString }
+            </div>
         );
     }
 }
 
 export default Vote;
-
-
-/*
-
-commmunication
-
-observer pattern - by directional
-
-parent to child by event 
-
-*/
