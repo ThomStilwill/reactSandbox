@@ -84,7 +84,7 @@ class Vote extends React.Component {
     state = {
         voters: data.voters,
         selectedVote: '',
-        selectedVoter: '',
+        selectedVoter: 'Thomas',
         allVoted: false,
         showVotes: false
     }
@@ -109,7 +109,6 @@ class Vote extends React.Component {
         this.setState({showVotes: !this.state.showVotes});
     }
 
-
     render(){
         return (
             <div className="voting">
@@ -119,11 +118,16 @@ class Vote extends React.Component {
 
                 <hr/>
                 <label>Test</label>{this.state.selectedVote}<br/>
-                <select value={this.state.selectedVoter} onChange={this.handleVoterChange}>
-                    <option value='Thomas'>Thomas</option>
-                    <option value='Richard'>Richard</option>
-                    <option value='Harold'>Harold</option>
+                
+                <select value={this.state.selectedVoter} 
+                        onChange={this.handleVoterChange}>
+                    {this.state.voters.map((option) => (
+                            <option key={option.name} value={option.name}>
+                                {option.name}
+                            </option>
+                            ))}                    
                 </select>
+
                 <button onClick={this.handleShowToggle}>Toggle All Votes.</button>
                 { this.state.showVotes | toString }
             </div>
