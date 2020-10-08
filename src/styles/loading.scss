@@ -1,0 +1,70 @@
+.loading__overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99999;
+  text-align: center;
+}
+
+.loading__overlay-fadein {
+  background-color: rgba(0, 0, 0, 0.25);
+  visibility: visible;
+  transition: all 0.5s linear;
+}
+
+.loading__overlay-fadeout {
+  background-color: rgba(255, 253, 253, 0.0);
+  visibility: hidden;
+  transition: all 0.5s linear;
+}
+
+
+.loading__overlay:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.loading__content {
+  position: relative;
+  display: inline-block;
+  min-width: 150px;
+  max-width: 350px;
+  min-height: 50px;
+  text-align: left;
+  vertical-align: middle;
+  background-color: rgba(230,230,230,1);
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin:auto;
+}
+
+.loading__hide {
+  background-color: rgba(255, 253, 253, 0.0);
+  visibility: hidden;
+  transition: all 0.0s linear;
+}
+
+.loading__image{
+  float: left;
+}
+
+.loading__verbiage {
+  padding-left: 65px;
+}
+.loading__title {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  margin-top: 3px;
+}
+
+.loading__message {
+  font-weight: normal;
+  overflow: hidden;
+}

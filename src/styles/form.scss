@@ -1,0 +1,215 @@
+$label-width: 8em;
+
+table.grid {
+  width: 100%;
+
+  thead {
+    border-top: 1px black solid;
+    background-color: antiquewhite;
+  }
+
+  td,
+  th {
+    padding: 2px 5px;
+  }
+}
+
+.form-title {
+  border-bottom: 2px solid #666;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+form {
+  vertical-align: top;
+  width: 100%;
+
+  .validation-banner {
+    background-color: $invalid-color;
+    border-radius: 4px;
+    color: white;
+    padding: 5px;
+    margin: 0 0 10px 0;
+  }
+
+  .field {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+
+    label {
+      display: flex;
+      width: 100%;
+      height: 100%;
+
+
+
+      .labeltext {
+        display: inline-block;
+        box-sizing: border-box;
+        width: $label-width;
+        height: 2em;
+        line-height: 2em;
+        text-align: right;
+        padding-right: 0.5em;
+        font-weight: 600;
+        color: #444;
+      }
+
+      .inputblock {
+        flex: 1;
+      }
+
+      .inputcontrol {
+        display: flex;
+      }
+
+      input {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        padding: 6px 6px;
+        background-color: rgb(245, 245, 245);
+        font-size: inherit;
+        border: 1px solid #999;
+        border-radius: 4px;
+        -webkit-appearance: none;
+      }
+
+      .control-status {
+        display: inline-block;
+        width: 50px;
+        color: yellowgreen;
+        line-height: 2em;
+        text-align: right;
+      }
+
+      .date input,
+      .number input {
+        width: 100px;
+      }
+
+      .mat-icon-button {
+        color: green;
+        height: 2em;
+        line-height: 2em;
+      }
+
+      select {
+        box-sizing: border-box;
+        display: block;
+        height: 100%;
+        padding: 6px 6px;
+        background-color: rgb(245, 245, 245);
+        font-size: inherit;
+        border: 1px solid #999;
+        border-radius: 4px;
+
+        .option-placeholder{
+          color: #888;
+        }
+      }
+
+      .error {
+        input {
+          border-color: $invalid-color;
+        }
+
+        p {
+          color: $invalid-color;
+        }
+      }
+
+      .help-message {
+        display: block;
+        color: cornflowerblue;
+        width: 100%;
+        font-size: 0.8em;
+        padding: 2px 0 2px 6px;
+      }
+
+      .validation-messages {
+        display: block;
+        color: $invalid-color;
+        width: 100%;
+        padding: 2px 0 2px 6px;
+      }
+    }
+  }
+
+  .button-bar {
+    text-align: right;
+    margin-top: 10px;
+  }
+}
+
+.selected {
+  background-color: rgb(166, 206, 253);
+}
+
+button {
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  min-width: 4em;
+  margin: 4px 2px;
+  padding: 4px 6px;
+  font-size: inherit;
+  background-color: #ddd;
+  color: black;
+  cursor: pointer;
+}
+
+button:focus {
+  outline:0;
+}
+
+button.btn-icon {
+  min-width: auto;
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+button.btn-icon:hover:enabled {
+  opacity: 1;
+}
+
+button[type=submit] {
+  min-width: 4em;
+  background-color: darkgreen;
+  color: white;
+}
+
+button[type=reset] {
+  min-width: 4em;
+  background-color: darkred;
+  color: white;
+}
+
+button:hover:enabled {
+  opacity: 0.75;
+}
+
+button:disabled {
+  color: rgb(124, 124, 124);
+}
+
+.button-icon {
+  border: none;
+  background-color: transparent;
+  color: #555;
+  min-width: initial;
+  margin: 0;
+}
+
+.button-debug {
+  color: darkgreen;
+}
+
+h3{
+  margin-bottom: 10px;
+}

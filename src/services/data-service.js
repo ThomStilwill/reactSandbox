@@ -13,7 +13,6 @@ export class DataService extends Component{
     }
     
     vehicles() {
-
         const url = `${this.baseUrl}/api/vehicles`;
         console.log(url);
 

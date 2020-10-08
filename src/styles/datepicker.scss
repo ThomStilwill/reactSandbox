@@ -1,0 +1,67 @@
+$daysize: 2em;
+.pickermask {
+    position: relative;
+    display: inline-block;
+    width: 238px;
+    height: 194px;
+    vertical-align: top;
+    z-index: 99999;
+    .picker {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        input,
+        select {
+            display: inline-block;
+            height: 2.0em;
+        }
+        .calendar {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            .pickermonth {
+
+                width: 4em;
+            }
+            .pickerdate {
+
+                width: 3em;
+            }
+            .pickeryear {
+
+                width: 5em;
+            }
+            .week {
+                height: $daysize;
+
+                .day {
+                    box-sizing: content-box;
+                    background-color: #eee;
+                    border: 1px solid darkgray;
+                    position: relative;
+                    display: inline-block;
+                    width: $daysize;
+                    height: $daysize;
+                    line-height: $daysize;
+                    text-align: center;
+                    overflow: hidden;
+                }
+                .dayInMonth{
+                    background-color: #ddd;
+
+                    &:hover{
+                      background-color: #bbb;
+                    }
+                }
+                .today {
+                  background-color: cornflowerblue;
+                }
+            }
+        }
+    }
+}

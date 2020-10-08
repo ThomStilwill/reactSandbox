@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/styles.scss';
-import Log from './components/log';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from "react-router-dom";
+import './styles/styles.scss';
+import Routing from './components/routing';
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Log />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routing/>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

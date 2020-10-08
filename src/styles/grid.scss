@@ -1,0 +1,172 @@
+.grid {
+  background-color: rgb(235, 235, 235);
+
+  .grid-add {
+    float: right;
+    line-height: 2em;
+  }
+
+  .grid-find {
+    height: 3em;
+    line-height: 3em;
+
+    label {
+      display: inline-block;
+      width: 400px;
+
+      .labeltext {
+        width: 4em;
+      }
+
+      input {
+        display: inline-block;
+        width: 300px;
+      }
+    }
+  }
+
+  .message {
+    text-align: center;
+  }
+
+  .grid-sort-ascending {
+    font-style: italic;
+  }
+
+  .grid-sort-descending {
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+      border-top: 2px black solid;
+      border-bottom: 1px black solid;
+      background-color: lightgray;
+
+      th {
+        white-space: nowrap;
+        text-align: left;
+        border-right: 1px solid black;
+
+        fa-icon {
+          color: transparent;
+        }
+
+      }
+
+      th.sortable {
+
+        fa-icon {
+          color: black;
+        }
+        cursor: pointer;
+      }
+
+      th.nosort {
+        padding-left: 20px;
+      }
+
+      th:last-child {
+        border-right: 0px black solid;
+      }
+    }
+
+    tbody {
+      .even {
+        background-color: rgb(243, 243, 243);
+      }
+
+      .odd {
+        background-color: rgb(224, 224, 224);
+      }
+
+      .selected {
+        color: white;
+        background-color: goldenrod;
+        opacity: 1;
+      }
+    }
+
+    td,
+    th {
+      padding: 0px 5px;
+      margin: 0;
+      height: 36px;
+    }
+
+    td {
+      padding-left: 20px;
+      border-right: 1px solid transparent;
+    }
+
+    td:last-child {
+      border-right: 0px black solid;
+      padding-left: 14px;
+    }
+
+    tfoot {
+      border-top: 2px black solid;
+      height: 3em;
+      line-height: 3em;
+
+      .gridpager {
+        width: 100%;
+
+        .pageselect {
+          margin-bottom: 0;
+
+          label {
+            display: inline-block;
+            width: 200px;
+
+            .labeltext {
+              width: 5em;
+            }
+
+            select {
+              display: inline-block;
+              width: 60px;
+              padding: 1px 2px;
+            }
+          }
+        }
+
+        .pager {
+
+          display: flex;
+
+          .pager-pagesize {
+            display: inline-block;
+            width: 100px;
+          }
+
+          .pager-info {
+            text-align: center;
+            display: inline-block;
+            flex: 1;
+          }
+
+          .pager-select {
+            text-align: right;
+            display: inline-block;
+            flex: 1;
+          }
+        }
+
+      }
+    }
+  }
+
+  .pager-picker {
+    min-width: 26px;
+    background-color: transparent;
+    color: #7c7c7c;
+  }
+
+  .pager-current {
+    background-color: #ddd;
+  }
+}

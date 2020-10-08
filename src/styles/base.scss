@@ -1,0 +1,30 @@
+@import 'variables';
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 62.5%;
+}
+
+body{
+  font-size: 12pt;
+  background-color: $base-background-color;
+  color: $base-text-color;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+section {
+  margin-bottom: 15px;
+}
+
+ul{
+  list-style-type: none;
+}

@@ -1,0 +1,70 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+header {
+  position: relative;
+  height: $header-height;
+  width: 100%;
+}
+
+nav {
+  height: $subnav-height + 10px;
+}
+
+main {
+  position: absolute;
+  top: $header-height + $subnav-height + 10px;
+  bottom: $footer-height;
+  width: 100%;
+  overflow: auto;
+  padding: 10px;
+}
+
+main.no-sub-menu {
+  top: $header-height;
+}
+
+footer {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  height: $footer-height;
+  line-height: $footer-height;
+  width: 100%;
+
+  padding: 0 10px;
+  border-top: 1px solid #bbb;
+  background-color: $footer-background-color;
+  .footer-left {
+    flex: 1;
+  }
+  .footer-right {
+    text-align: right;
+    flex: 1;
+  }
+}
+
+.logo {
+  position: absolute;
+
+  img{
+    height: $header-height - $nav-height;
+    padding: 12px 12px 12px 24px;
+  }
+}
+
+.title {
+  position: absolute;
+  right: 0;
+  text-align: right;
+  font-size: 3rem;
+  padding: 15px 20px 0 0;
+  color: darkred;
+  .subtitle {
+    font-size: 2rem;
+    color: gray;
+  }
+}
