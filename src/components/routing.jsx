@@ -1,12 +1,14 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import App from './app'
-import Log from './log';
 import Home from './home';
 import About from './about';
-import AboutLog from './about-log';
-import Vehicles from './vehicles';
 import NotFound from './not-found';
+
+import Log from './log/log';
+import AboutLog from './log/about-log';
+import Vehicles from './log/vehicles';
+import VehicleEdit from './log/vehicle-edit';
   
   function Routing() {
     // We removed the <BrowserRouter> element from App because the
@@ -28,6 +30,7 @@ import NotFound from './not-found';
             children: [
               { path: 'About', element: <AboutLog /> },
               { path: 'Vehicles', element: <Vehicles /> },
+              { path: 'Vehicles/:vehicleId', element: <VehicleEdit /> },
             ]
           },
           {

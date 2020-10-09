@@ -24,6 +24,33 @@ export class DataService extends Component{
                 }
             })
     }
+
+    vehicle(vehicleId) {
+        const url = `${this.baseUrl}/api/vehicles/${vehicleId}`;
+        console.log(url);
+
+        return fetch(url,
+            {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                }
+            })
+    }
+
+    save(id,vehicle) {
+        const url = `${this.baseUrl}/api/vehicles/${id}`;
+        console.log(url);
+
+        return fetch(url,
+            {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(vehicle)
+            })
+    }
 }
 
 export default DataService;

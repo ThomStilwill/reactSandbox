@@ -10,17 +10,17 @@ class App extends React.Component {
         return (
             <>
             <header>
-                <div class="logo">
+                <div className="logo">
                     <img src="/images/logo.jpeg" alt="logo"/>
                 </div>
 
-                <div class="title">
+                <div className="title">
                     GTI Vehicle Maintenance Log
-                    <div class="subtitle">
+                    <div className="subtitle">
                         So, what's gonna break next?
                     </div>
                 </div>
-                <nav class="navbar">
+                <nav className="navbar">
                     <ul>
                         <li><NavLink to="home" activeStyle={{ backgroundColor: 'gray' }}>Home</NavLink></li>
                         <li><NavLink to="about" activeStyle={{ backgroundColor: 'gray' }}>About</NavLink></li>
@@ -32,8 +32,8 @@ class App extends React.Component {
             <Outlet/>
             
             <footer>
-                <div class="footer-left"></div>
-                <div class="footer-right">&copy; 2018 - Thom Stilwill</div>
+                <div className="footer-left"></div>
+                <div className="footer-right">&copy; 2018 - Thom Stilwill</div>
             </footer>
             </>
         );
