@@ -10,6 +10,7 @@ class TextInput extends React.Component {
         type:'',
         placeholder:'',
         onChange:'',
+        onError: '',
         className:'',
         errors:[],
         children:'',
@@ -27,22 +28,30 @@ class TextInput extends React.Component {
       this.state.onChange(event);
     }
 
+    handleError = event => {
+
+      this.state.onError(event);
+    }
+
+
     handleBlur = event => {
       const errors = [];
       const value = event.target.value;
 
       this.state.validators.some(validator => {
-        console.log(validator);
+        //console.log(validator);
         if(!validator.test(value)) {
-          console.log(`${this.state.name} = ${validator.message}`);
+          //console.log(`${this.state.name} = ${validator.message}`);
           errors.push(`${validator.message}`);
-
           return validator.break;
         }   
         return false;
       });
-
       this.setState({errors: errors});
+
+      if(errors.length>0){
+        this.state.onError({name:this.state.name, count: errors.length});
+      }
     }
 
     render() { 

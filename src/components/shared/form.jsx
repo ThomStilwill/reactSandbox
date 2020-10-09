@@ -5,7 +5,8 @@ const Form = ({children, ...props}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        //alert(JSON.stringify(props.state, null, 2));
+        const dump = JSON.stringify(props.state, null, 2);
+        console.log(dump);
         props.onSubmit(props.state);
     }
 
@@ -15,8 +16,15 @@ const Form = ({children, ...props}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>{props.title}</h2>
-            <br/>
+            
+            <div class="form-title">
+                <h2>{props.title}</h2>
+            </div>
+            
+            { Object.keys(props.errors).length>0 && 
+                <div class="validation-banner" >Please fix the errors and try again.
+                </div> 
+            }
 
             <div className="form">
                 {children}

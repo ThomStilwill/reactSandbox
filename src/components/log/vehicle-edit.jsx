@@ -33,8 +33,12 @@ class VehicleEdit extends React.Component {
         Validation.validators.minLength(3)
     ]
 
+    yearValidators = [
+        Validation.validators.required(),
+        Validation.validators.range(1900,2100)
+    ]
+
     componentDidMount(){
-        
         this.service.vehicle(this.vehicleId)
             .then(res => res.json())
             .then(
@@ -52,6 +56,18 @@ class VehicleEdit extends React.Component {
             )
     }
 
+    handleError = event => { 
+        const { errors } = this.state;
+
+        if(event.count>0){
+            errors[event.name] = event.count;
+        } else {
+            delete errors[event.name];
+        }
+
+        this.setState({ errors });
+    }
+
     handleChange = event => {
         const { vehicle } = this.state;
         vehicle[event.target.name] = event.target.value;
@@ -61,61 +77,43 @@ class VehicleEdit extends React.Component {
     handleCancel = () => { 
         this.props.navigate('/log/vehicles') 
     }
-
+  
     handleSubmit = vehicle => {
-
-        const dump = JSON.stringify(this.state.vehicle);
-        console.log(dump);
-
-        // const {
-        //     vehicle: {id, name, year, description }  
-        // } = this.state;
-
-        let err = {};
-    
-        // if (!name) {
-        //   err.name = "Enter vehicle name!";
-        // }
-    
-        // if (!year) {
-        //   err.year = "Enter a valid year.";
-        // }
-    
-        this.setState({ errors: err }, () => {
-          if (Object.getOwnPropertyNames(this.state.errors).length === 0) {
-            
-            alert('submit');
-            //this.service.save(vehicle.id,vehicle)
-            // .then(response=>{
-            //     this.setState({ submitted: true });
-            //     this.props.navigate('/log/vehicles') 
-            // })
-            // .catch(err=>{
-            //     console.log(err);
-            // })
-          }
-        });
-      };
+        if (Object.keys(this.state.errors).length === 0) {
+            this.service.save(vehicle.id,vehicle)
+            .then(response=>{
+                this.setState({ submitted: true });
+                this.props.navigate('/log/vehicles') 
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        }
+    };
 
     render(){
 
         const {vehicle: {name, year, description }  
-              //errors
-          } = this.state;
+        } = this.state;
 
         return (
             <>
-                <Form title="Edit Vehicle" onSubmit={this.handleSubmit} onCancel={this.handleCancel} state={this.state.vehicle}>
+                <Form title="Edit Vehicle" 
+                        onSubmit={this.handleSubmit} 
+                        onCancel={this.handleCancel} 
+                        state={this.state.vehicle}
+                        errors={this.state.errors}>
+
                     <TextInput
                         label="Name"
                         name="name"
                         type="text"
                         value={name}
                         onChange={this.handleChange}
+                        onError={this.handleError}
                         placeholder="Enter name..."
-                        //error={this.state.errors.name}
                         validators={this.nameValidators}
-                        className="input" />
+                        />
                     
                     <TextInput
                         label="Year"
@@ -123,10 +121,10 @@ class VehicleEdit extends React.Component {
                         type="text"
                         value={year}
                         onChange={this.handleChange}
+                        onError={this.handleError}
                         placeholder="Enter year..."
-                        //error={this.state.errors.year}
-                        required
-                        className="input" />
+                        validators={this.yearValidators}
+                        />
 
                     <TextInput
                         label="Description"
@@ -134,9 +132,9 @@ class VehicleEdit extends React.Component {
                         type="text"
                         value={description}
                         onChange={this.handleChange}
+                        onError={this.handleError}
                         placeholder="Enter description..."
-                        //error={this.state.errors.description}
-                        className="input" />
+                        />
                    
                 </Form>
                 <pre>{JSON.stringify(this.state.vehicle)}</pre>

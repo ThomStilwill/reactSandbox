@@ -6,7 +6,8 @@ class Validation {
         required() {
             return {
                 test: value=> { return !!value },
-                message: 'Required.'
+                message: 'Required.',
+                break: true
             }        
         },
 
@@ -14,6 +15,24 @@ class Validation {
             return {
                test: value=> { return !!value && value.length >= min },
                message: `Minmum length is ${min} characters.`
+            }
+        },
+
+        range(min,max) {
+            return {
+               test: value=> { 
+                    if(!value) {
+                        return true
+                    }
+                    if(!!min && value < min) {
+                        return false;
+                    }
+                    if(!!max && value > max){
+                        return false;
+                    }
+                    return true;
+                },
+                message: `Value must be between ${min} and ${max}.`
             }
         }
     }
