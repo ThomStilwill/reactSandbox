@@ -16,13 +16,16 @@ class VehicleEdit extends React.Component {
               description: ''
           },  
           isLoaded: false,
-          errors: {},
+          formState: {
+              errors: []
+          },
           submitted: false
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleStateChange = this.handleStateChange.bind(this);
         
         this.service = DataService.getInstance();
         this.vehicleId = props.params.vehicleId;
@@ -49,23 +52,22 @@ class VehicleEdit extends React.Component {
                 }),
                 (error) => {
                     this.setState({
-                        isLoaded: false,
-                        error
+                        isLoaded: false
                     });
                 }
             )
     }
 
-    handleError = event => { 
-        const { errors } = this.state;
+    handleStateChange = event => { 
+        const formState = this.state.formState;
 
-        if(event.count>0){
-            errors[event.name] = event.count;
+        if(event.errors.length){
+            formState.errors[event.name] = event.errors;
         } else {
-            delete errors[event.name];
+            delete formState.errors[event.name];
         }
 
-        this.setState({ errors });
+        this.setState({ formState });
     }
 
     handleChange = event => {
@@ -79,7 +81,7 @@ class VehicleEdit extends React.Component {
     }
   
     handleSubmit = vehicle => {
-        if (Object.keys(this.state.errors).length === 0) {
+        if (this.state.formState.errors.length === 0) {
             this.service.save(vehicle.id,vehicle)
             .then(response=>{
                 this.setState({ submitted: true });
@@ -101,8 +103,9 @@ class VehicleEdit extends React.Component {
                 <Form title="Edit Vehicle" 
                         onSubmit={this.handleSubmit} 
                         onCancel={this.handleCancel} 
+                        formState={this.state.formState}
                         state={this.state.vehicle}
-                        errors={this.state.errors}>
+                        >
 
                     <TextInput
                         label="Name"
@@ -110,7 +113,7 @@ class VehicleEdit extends React.Component {
                         type="text"
                         value={name}
                         onChange={this.handleChange}
-                        onError={this.handleError}
+                        onStateChange={this.handleStateChange}
                         placeholder="Enter name..."
                         validators={this.nameValidators}
                         />
@@ -121,7 +124,7 @@ class VehicleEdit extends React.Component {
                         type="text"
                         value={year}
                         onChange={this.handleChange}
-                        onError={this.handleError}
+                        onStateChange={this.handleStateChange}
                         placeholder="Enter year..."
                         validators={this.yearValidators}
                         />
@@ -132,12 +135,10 @@ class VehicleEdit extends React.Component {
                         type="text"
                         value={description}
                         onChange={this.handleChange}
-                        onError={this.handleError}
+                        onStateChange={this.handleStateChange}
                         placeholder="Enter description..."
                         />
-                   
                 </Form>
-                <pre>{JSON.stringify(this.state.vehicle)}</pre>
             </>
         )
     }

@@ -14,15 +14,23 @@ const Form = ({children, ...props}) => {
         props.onCancel();
     }
 
+    // const handleStateChange = event => {
+    //     console.log(JSON.stringify(event));
+    // };
+
+    const hasErrors = () => {
+        return Object.keys(props.formState.errors).length>0;
+    }
+
     return (
         <form onSubmit={handleSubmit}>
             
-            <div class="form-title">
+            <div className="form-title">
                 <h2>{props.title}</h2>
             </div>
             
-            { Object.keys(props.errors).length>0 && 
-                <div class="validation-banner" >Please fix the errors and try again.
+            { hasErrors() && 
+                <div className="validation-banner" >Please fix the errors and try again.
                 </div> 
             }
 
@@ -36,8 +44,11 @@ const Form = ({children, ...props}) => {
                             onClick={handleCancel}/>
                     <Button type="submit" 
                             label="Submit"
+                            disabled={hasErrors()}
                             />
             </div>
+            <pre>{JSON.stringify(props.state)}</pre>
+            <pre>{JSON.stringify(props.formState)}</pre>
         </form>
     )
 };

@@ -197,7 +197,8 @@ button:hover:enabled {
 }
 
 button:disabled {
-  color: rgb(124, 124, 124);
+  background-color: rgb(124, 124, 124);
+  color: rgb(70, 70, 70);
 }
 
 .button-icon {

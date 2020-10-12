@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Status from './status';
 
 class TextInput extends React.Component {
   
@@ -10,48 +11,79 @@ class TextInput extends React.Component {
         type:'',
         placeholder:'',
         onChange:'',
-        onError: '',
+        onStateChange: '',
         className:'',
-        errors:[],
         children:'',
         label:'',
         value: '',
+        formState: {
+        touched: false,
+        dirty: false,
+        valid: false,
+        name: '',
+        errors:{},
+        },
         validators:[],
         ...props
       } 
       this.handleChange = this.handleChange.bind(this);
       this.handleBlur = this.handleBlur.bind(this);
+      this.handleStateChange = this.handleStateChange.bind(this);
+    }
+
+    componentDidMount(){
+      const formState = this.state.formState;
+      formState.name = this.state.name;
+      this.setState({formState});
+    }
+
+    handleStateChange = event => {
+      const formState = this.state.formState;
+      formState.name = this.state.name;
+      this.state.onStateChange(formState);
     }
 
     handleChange = event => {
-      this.setState({ value: event.target.value })
+
+      const formState = this.state.formState;
+      formState.dirty = true;
+      this.setState({formState: formState});
+
+      this.setState({value: event.target.value });
       this.state.onChange(event);
+      this.state.onStateChange(this.state.formState);
+      console.log(`onChange: ${this.state.name} :: ${event.target.value}` );
     }
-
-    handleError = event => {
-
-      this.state.onError(event);
-    }
-
 
     handleBlur = event => {
-      const errors = [];
-      const value = event.target.value;
+      const formState = this.state.formState;
+      formState.touched = true;
+      this.setState({formState: formState});
 
+      const value = event.target.value;
+      this.validate(value);
+    }
+
+    validate = (value) => {
+      const errors = [];
       this.state.validators.some(validator => {
-        //console.log(validator);
         if(!validator.test(value)) {
-          //console.log(`${this.state.name} = ${validator.message}`);
           errors.push(`${validator.message}`);
           return validator.break;
         }   
         return false;
       });
-      this.setState({errors: errors});
 
-      if(errors.length>0){
-        this.state.onError({name:this.state.name, count: errors.length});
-      }
+      const formState = this.state.formState;
+      formState.errors = errors;
+      formState.valid = errors.length === 0;
+     
+      this.setState({formState: formState});
+      this.state.onStateChange(this.state.formState);
+    }
+
+    hasErrors = () => {
+      return Object.keys(this.state.formState.errors).length > 0;
     }
 
     render() { 
@@ -74,12 +106,15 @@ class TextInput extends React.Component {
                             onBlur={this.handleBlur}
                             value={value}
                             className={this.state.className}
-                            style={this.state.error && {border: 'solid 1px red'}}
+                            style={this.state.formState.error && {border: 'solid 1px red'}}
                             />
+                            <Status state={this.state.formState} />
                     </div>
                     <div className="validation-messages">
                         <div>
-                            { this.state.errors && this.state.errors.map(error=><p>{error}</p>) }
+                            { this.hasErrors() && 
+                              this.state.formState.errors[this.state.name] &&
+                              this.state.formState.errors[this.state.name].map(error=><p>{error}</p>) }
                         </div>
                     </div>
                 </div>
