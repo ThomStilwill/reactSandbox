@@ -37,6 +37,11 @@ class TextInput extends React.Component {
       this.setState({formState});
     }
 
+    componentDidUpdate( prevProps,  prevState){
+      //console.log(JSON.stringify(prevProps));
+      //this.validate(this.state.value);
+    }
+
     handleStateChange = event => {
       const formState = this.state.formState;
       formState.name = this.state.name;
