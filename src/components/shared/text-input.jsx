@@ -21,7 +21,7 @@ class TextInput extends React.Component {
         dirty: false,
         valid: false,
         name: '',
-        errors:{},
+        errors:[],
         },
         validators:[],
         ...props
@@ -106,15 +106,15 @@ class TextInput extends React.Component {
                             onBlur={this.handleBlur}
                             value={value}
                             className={this.state.className}
-                            style={this.state.formState.error && {border: 'solid 1px red'}}
+                            style={this.hasErrors() ? {border: 'solid 1px red'} : {}}
                             />
                             <Status state={this.state.formState} />
                     </div>
                     <div className="validation-messages">
                         <div>
-                            { this.hasErrors() && 
-                              this.state.formState.errors[this.state.name] &&
-                              this.state.formState.errors[this.state.name].map(error=><p>{error}</p>) }
+                            { 
+                              this.state.formState.errors &&
+                              this.state.formState.errors.map(error=><p>{error}</p>) }
                         </div>
                     </div>
                 </div>
