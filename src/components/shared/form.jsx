@@ -19,7 +19,23 @@ const Form = ({children, ...props}) => {
     // };
 
     const hasErrors = () => {
-        return Object.keys(props.formState.errors).length>0;
+        let result = false;
+
+        props.formState.fields.map(field=>{
+            if(field.errors && field.errors.length>0){
+                result = true;
+                
+            }
+            return true;
+        })
+        return result;
+    }
+
+    const dumpErrors = () => {
+
+        // return props.formState.errors).map(key => {
+        //     return JSON.stringify(props.formState.errors[key]);
+        // })
     }
 
     return (
@@ -48,7 +64,7 @@ const Form = ({children, ...props}) => {
                             />
             </div>
             <pre>{JSON.stringify(props.state)}</pre>
-            <pre>{JSON.stringify(props.formState)}</pre>
+            <pre>{dumpErrors()}</pre>
         </form>
     )
 };

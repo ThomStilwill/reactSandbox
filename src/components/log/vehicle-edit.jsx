@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import TextInput from '../shared/text-input';
 import Validation from '../shared/validation';
 import Form from '../shared/form';
+import {exists,find} from '../shared/utils';
 
 class VehicleEdit extends React.Component {
     constructor(props) {
@@ -16,9 +17,7 @@ class VehicleEdit extends React.Component {
               description: ''
           },  
           isLoaded: false,
-          formState: {
-              errors: []
-          },
+          formState: {fields:[]},
           submitted: false
         };
 
@@ -58,16 +57,25 @@ class VehicleEdit extends React.Component {
             )
     }
 
-    handleStateChange = event => { 
+    handleStateChange = fieldState => { 
         const formState = this.state.formState;
+        const match = {name: fieldState.name};
 
-        if(event.errors.length){
-            formState.errors[event.name] = event.errors;
+        let targetFieldState = {};
+
+        if(!exists(x=>x.name===fieldState.name,formState.fields)) {
+            formState.fields.push(match);
+        }
+        
+        targetFieldState = find(x=>x.name===fieldState.name,formState.fields);
+
+        if(fieldState.errors.length) {
+            targetFieldState.errors = fieldState.errors;
         } else {
-            delete formState.errors[event.name];
+            delete targetFieldState.errors;
         }
 
-        this.setState({ formState });
+        this.setState({ formState: formState });
     }
 
     handleChange = event => {
@@ -139,6 +147,7 @@ class VehicleEdit extends React.Component {
                         placeholder="Enter description..."
                         />
                 </Form>
+        <pre>VF: {JSON.stringify(this.state.formState)}</pre>
             </>
         )
     }

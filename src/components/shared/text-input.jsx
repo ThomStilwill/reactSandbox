@@ -16,7 +16,7 @@ class TextInput extends React.Component {
         children:'',
         label:'',
         value: '',
-        formState: {
+        fieldState: {
         touched: false,
         dirty: false,
         valid: false,
@@ -32,9 +32,9 @@ class TextInput extends React.Component {
     }
 
     componentDidMount(){
-      const formState = this.state.formState;
-      formState.name = this.state.name;
-      this.setState({formState});
+      const fieldState = this.state.fieldState;
+      fieldState.name = this.state.name;
+      this.setState({fieldState});
     }
 
     componentDidUpdate( prevProps,  prevState){
@@ -43,27 +43,27 @@ class TextInput extends React.Component {
     }
 
     handleStateChange = event => {
-      const formState = this.state.formState;
-      formState.name = this.state.name;
-      this.state.onStateChange(formState);
+      const fieldState = this.state.fieldState;
+      fieldState.name = this.state.name;
+      this.state.onStateChange(fieldState);
     }
 
     handleChange = event => {
 
-      const formState = this.state.formState;
-      formState.dirty = true;
-      this.setState({formState: formState});
+      const fieldState = this.state.fieldState;
+      fieldState.dirty = true;
+      this.setState({fieldState: fieldState});
 
       this.setState({value: event.target.value });
       this.state.onChange(event);
-      this.state.onStateChange(this.state.formState);
+      this.state.onStateChange(this.state.fieldState);
       console.log(`onChange: ${this.state.name} :: ${event.target.value}` );
     }
 
     handleBlur = event => {
-      const formState = this.state.formState;
-      formState.touched = true;
-      this.setState({formState: formState});
+      const fieldState = this.state.fieldState;
+      fieldState.touched = true;
+      this.setState({fieldState: fieldState});
 
       const value = event.target.value;
       this.validate(value);
@@ -79,16 +79,16 @@ class TextInput extends React.Component {
         return false;
       });
 
-      const formState = this.state.formState;
-      formState.errors = errors;
-      formState.valid = errors.length === 0;
+      const fieldState = this.state.fieldState;
+      fieldState.errors = errors;
+      fieldState.valid = errors.length === 0;
      
-      this.setState({formState: formState});
-      this.state.onStateChange(this.state.formState);
+      this.setState({fieldState: fieldState});
+      this.state.onStateChange(this.state.fieldState);
     }
 
     hasErrors = () => {
-      return Object.keys(this.state.formState.errors).length > 0;
+      return Object.keys(this.state.fieldState.errors).length > 0;
     }
 
     render() { 
@@ -113,13 +113,13 @@ class TextInput extends React.Component {
                             className={this.state.className}
                             style={this.hasErrors() ? {border: 'solid 1px red'} : {}}
                             />
-                            <Status state={this.state.formState} />
+                            <Status state={this.state.fieldState} />
                     </div>
                     <div className="validation-messages">
                         <div>
                             { 
-                              this.state.formState.errors &&
-                              this.state.formState.errors.map(error=><p>{error}</p>) }
+                              this.state.fieldState.errors &&
+                              this.state.fieldState.errors.map(error=><p>{error}</p>) }
                         </div>
                     </div>
                 </div>
