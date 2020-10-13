@@ -66,7 +66,7 @@ class VehicleEdit extends React.Component {
         if(!exists(x=>x.name===fieldState.name,formState.fields)) {
             formState.fields.push(match);
         }
-        
+
         targetFieldState = find(x=>x.name===fieldState.name,formState.fields);
 
         if(fieldState.errors.length) {
@@ -147,7 +147,7 @@ class VehicleEdit extends React.Component {
                         placeholder="Enter description..."
                         />
                 </Form>
-        <pre>VF: {JSON.stringify(this.state.formState)}</pre>
+        
             </>
         )
     }

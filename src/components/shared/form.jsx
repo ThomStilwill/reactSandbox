@@ -14,10 +14,6 @@ const Form = ({children, ...props}) => {
         props.onCancel();
     }
 
-    // const handleStateChange = event => {
-    //     console.log(JSON.stringify(event));
-    // };
-
     const hasErrors = () => {
         let result = false;
 
@@ -29,13 +25,6 @@ const Form = ({children, ...props}) => {
             return true;
         })
         return result;
-    }
-
-    const dumpErrors = () => {
-
-        // return props.formState.errors).map(key => {
-        //     return JSON.stringify(props.formState.errors[key]);
-        // })
     }
 
     return (
@@ -64,7 +53,7 @@ const Form = ({children, ...props}) => {
                             />
             </div>
             <pre>{JSON.stringify(props.state)}</pre>
-            <pre>{dumpErrors()}</pre>
+            <pre>{JSON.stringify(props.formState,null,2)}</pre>
         </form>
     )
 };
