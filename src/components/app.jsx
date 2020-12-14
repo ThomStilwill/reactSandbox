@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     NavLink,
-
     Outlet
   } from "react-router-dom";
   
@@ -23,6 +22,9 @@ class App extends React.Component {
                 <nav className="navbar">
                     <ul>
                         <li><NavLink to="home" activeStyle={{ backgroundColor: 'gray' }}>Home</NavLink></li>
+                        <li><NavLink to="game" activeStyle={{ backgroundColor: 'gray' }}>Game</NavLink></li>
+                        <li><NavLink to="cards" activeStyle={{ backgroundColor: 'gray' }}>Cards</NavLink></li>
+                        <li><NavLink to="stars" activeStyle={{ backgroundColor: 'gray' }}>Stars</NavLink></li>
                         <li><NavLink to="about" activeStyle={{ backgroundColor: 'gray' }}>About</NavLink></li>
                         <li><NavLink to="log" activeStyle={{ backgroundColor: 'gray' }}>Log</NavLink></li>
                     </ul>

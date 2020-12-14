@@ -2,7 +2,7 @@
   "name": "home-server",
   "version": "0.0.0",
   "scripts": {
-    "server": "nodemon ./server/server"
+    "server": "nodemon ./server"
   },
   "private": true,
   "dependencies": {

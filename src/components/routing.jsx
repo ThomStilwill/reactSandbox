@@ -2,6 +2,9 @@ import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import App from './app'
 import Home from './home';
+import Basics from './reactcourse/basics';
+import Cards from './reactcourse/cards';
+import Stars from './reactcourse/stars';
 import About from './about';
 import NotFound from './not-found';
 
@@ -24,6 +27,9 @@ import VehicleEdit from './log/vehicle-edit';
         element: <App />,
         children: [
           { path: 'Home', element: <Home /> },
+          { path: 'Basics', element: <Basics /> },
+          { path: 'Cards', element: <Cards /> },
+          { path: 'Stars', element: <Stars /> },
           { path: 'About', element: <About /> },
           { path: 'Log', 
             element: <Log /> ,
