@@ -27,9 +27,9 @@ import VehicleEdit from './log/vehicle-edit';
         element: <App />,
         children: [
           { path: 'Home', element: <Home /> },
-          { path: 'Basics', element: <Basics /> },
-          { path: 'Cards', element: <Cards /> },
           { path: 'Stars', element: <Stars /> },
+          { path: 'Cards', element: <Cards /> },
+          { path: 'Basics', element: <Basics /> },
           { path: 'About', element: <About /> },
           { path: 'Log', 
             element: <Log /> ,
