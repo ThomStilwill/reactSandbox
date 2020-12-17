@@ -39,7 +39,7 @@ export const formData = [
             "type": "text",
             "validationType": "string",
             "validations": [
-                max(10),
+                max(15),
                 required()
             ]
         },
