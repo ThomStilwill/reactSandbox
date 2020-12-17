@@ -1,3 +1,49 @@
+.react-form{
+  padding: 2em;
+
+  form {
+
+    label {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      min-height: 2em;
+      line-height: 2em;
+      margin-bottom: 0.5em;
+
+      .label-text{
+        width: 6em;
+      }
+
+      .input-block {
+        flex: 1;
+        margin-left: 0.5em;
+      }
+      
+      .error-block {
+        color: red;
+      }
+
+      input{
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 6px 6px;
+        background-color: rgb(245, 245, 245);
+        font-size: inherit;
+        border: 1px solid #999;
+        border-radius: 4px;
+        -webkit-appearance: none;
+      }
+    }
+
+    button {
+      margin: 0 3px;
+      padding: 6px 8px;
+    }
+  }
+}
+
 .cardapp {
   font-size: 16px;
   padding: 2em;

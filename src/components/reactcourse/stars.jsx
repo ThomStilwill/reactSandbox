@@ -57,6 +57,17 @@ const StarsDisplay = props => (
     </>
 )
 
+
+const PlayNumber = props => (
+    <button 
+        className="number" 
+        style={{backgroundColor: colors[props.status]}}
+        onClick={()=> props.onClick(props.number,props.status)}
+    >
+        {props.number}
+    </button>        
+)
+
 const ButtonDisplay = props => {
     const candidatesAreWrong = utils.sum(props.candidateNums) > props.stars;
     const numberStatus = number => {
@@ -82,16 +93,6 @@ const ButtonDisplay = props => {
         </>
     )
 }
-
-const PlayNumber = props => (
-    <button 
-        className="number" 
-        style={{backgroundColor: colors[props.status]}}
-        onClick={()=> props.onClick(props.number,props.status)}
-    >
-        {props.number}
-    </button>        
-)
 
 const PlayAgain = props => (
     <div className="game-done">

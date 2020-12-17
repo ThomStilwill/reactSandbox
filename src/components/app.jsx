@@ -22,6 +22,7 @@ class App extends React.Component {
                 <nav className="navbar">
                     <ul>
                         <li><NavLink to="home" activeStyle={{ backgroundColor: 'gray' }}>Home</NavLink></li>
+                        <li><NavLink to="form" activeStyle={{ backgroundColor: 'gray' }}>Form</NavLink></li>
                         <li><NavLink to="stars" activeStyle={{ backgroundColor: 'gray' }}>Stars</NavLink></li>
                         <li><NavLink to="cards" activeStyle={{ backgroundColor: 'gray' }}>Cards</NavLink></li>
                         <li><NavLink to="game" activeStyle={{ backgroundColor: 'gray' }}>Game</NavLink></li>

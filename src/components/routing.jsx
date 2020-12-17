@@ -5,6 +5,7 @@ import Home from './home';
 import Basics from './reactcourse/basics';
 import Cards from './reactcourse/cards';
 import Stars from './reactcourse/stars';
+import Form from './reactcourse/form';
 import About from './about';
 import NotFound from './not-found';
 
@@ -30,6 +31,7 @@ import VehicleEdit from './log/vehicle-edit';
           { path: 'Stars', element: <Stars /> },
           { path: 'Cards', element: <Cards /> },
           { path: 'Basics', element: <Basics /> },
+          { path: 'Form', element: <Form /> },
           { path: 'About', element: <About /> },
           { path: 'Log', 
             element: <Log /> ,
