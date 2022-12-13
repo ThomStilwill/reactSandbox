@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "compression": "^1.7.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-jwt": "^5.3.1",
     "fs": "0.0.1-security",
     "hammerjs": "^2.0.8",
